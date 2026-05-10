@@ -1,0 +1,64 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { series, books } from '../../data/books';
+---
+
+<BaseLayout
+  title="Books by Kat Falls - Dark Life & Inhuman Series"
+  description="All books by Kat Falls - the Dark Life middle grade series and the Inhuman YA series, with reading order, age ranges, and buy links."
+>
+
+  <section class="bg-brand-dark text-brand-warm py-24">
+    <div class="section-container">
+      <p class="section-subheading text-brand-gold">The Complete Catalog</p>
+      <h1 class="text-5xl md:text-6xl font-serif">Books</h1>
+    </div>
+  </section>
+
+  {series.map((s) => {
+    const seriesBooks = books.filter(b => b.seriesSlug === s.slug);
+    return (
+      <section class="section-container border-b border-brand-dark/10 last:border-0">
+        <div class="grid md:grid-cols-3 gap-10 items-start">
+          <!-- Series info -->
+          <div class="md:col-span-1">
+            <p class="section-subheading">{s.ageRange}</p>
+            <h2 class="font-serif text-3xl text-brand-dark mb-3">{s.name} Series</h2>
+            <p class="text-sm text-brand-dark/60 uppercase tracking-wide mb-4">{s.genre}</p>
+            <p class="text-brand-dark/70 leading-relaxed mb-6">{s.description}</p>
+            <a href={s.path} class="btn-outline text-sm">Series Overview &amp; Reading Order →</a>
+          </div>
+
+          <!-- Book cards -->
+          <div class="md:col-span-2 grid grid-cols-2 gap-6">
+            {seriesBooks.map((book) => (
+              <a href={`/books/${book.slug}`}
+                 class="group bg-white rounded-sm shadow-md hover:shadow-xl transition-shadow overflow-hidden">
+                <!-- Cover image with fallback -->
+                <div class="aspect-[2/3] bg-brand-mid flex items-center justify-center overflow-hidden">
+                  <img
+                    src={book.coverImage}
+                    alt={`${book.title} book cover`}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                    onerror="this.classList.add('hidden'); if (this.nextElementSibling) this.nextElementSibling.classList.remove('hidden');"
+                  />
+                  <div class="hidden w-full h-full flex flex-col items-center justify-center text-brand-warm/40 text-center p-4">
+                    <p class="text-xs uppercase tracking-widest text-brand-gold mb-2">{book.series} #{book.seriesNumber}</p>
+                    <p class="font-serif text-brand-warm text-lg">{book.title}</p>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <p class="text-xs uppercase tracking-widest text-brand-accent mb-1">{s.name} #{book.seriesNumber}</p>
+                  <h3 class="font-serif text-lg text-brand-dark">{book.title}</h3>
+                  <p class="text-xs text-brand-dark/50 mt-1">{book.pubDate} · {book.ageRange}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  })}
+
+</BaseLayout>

@@ -1,0 +1,31 @@
+---
+interface Props {
+  title: string;
+  series?: string;
+  coverImage: string;
+  slug: string;
+  tagline?: string;
+}
+
+const { title, series, coverImage, slug, tagline } = Astro.props;
+---
+
+<a href={`/books/${slug}`} class="book-card group block bg-white">
+  <div class="aspect-[2/3] overflow-hidden">
+    <img
+      src={coverImage}
+      alt={`${title} book cover`}
+      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      loading="lazy"
+    />
+  </div>
+  <div class="p-4">
+    {series && (
+      <p class="text-xs uppercase tracking-widest text-brand-accent mb-1">{series}</p>
+    )}
+    <h3 class="font-serif text-lg text-brand-dark leading-tight">{title}</h3>
+    {tagline && (
+      <p class="text-sm text-brand-dark/60 mt-1 line-clamp-2">{tagline}</p>
+    )}
+  </div>
+</a>

@@ -1,0 +1,136 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { books } from '../../data/books';
+import { buildSeriesPageSchema } from '../../data/structuredData';
+
+const seriesBooks = books.filter((book) => book.seriesSlug === 'inhuman-series');
+
+const schema = buildSeriesPageSchema({
+  ageRange: 'Ages 13+ / Grades 6-12',
+  books: seriesBooks,
+  breadcrumbs: [
+    { name: 'Home', path: '/' },
+    { name: 'Books', path: '/books' },
+    { name: 'Inhuman Series', path: '/series/inhuman' },
+  ],
+  coverImage: '/images/books/inhuman-series.jpg',
+  description:
+    'The Inhuman YA duology by Kat Falls follows Lane McEvoy through a quarantined world transformed by the Ferae Naturae virus.',
+  genre: 'Young Adult Dystopian Science Fiction',
+  name: 'Inhuman Series',
+  path: '/series/inhuman',
+});
+---
+
+<BaseLayout
+  title="Inhuman Series by Kat Falls - YA Dystopian Duology"
+  description="The Inhuman YA duology by Kat Falls - two dystopian thrillers about a world split by the Ferae Naturae virus for ages 13 and up."
+  schema={schema}
+>
+  <section class="bg-brand-dark text-brand-warm py-24">
+    <div class="section-container">
+      <nav class="text-xs text-brand-warm/40 mb-6">
+        <a href="/" class="hover:text-brand-warm transition-colors">Home</a>
+        <span class="mx-2">&rsaquo;</span>
+        <a href="/books" class="hover:text-brand-warm transition-colors">Books</a>
+        <span class="mx-2">&rsaquo;</span>
+        <span class="text-brand-warm/70">Inhuman Series</span>
+      </nav>
+      <p class="section-subheading text-brand-gold">YA Dystopian Thriller · Ages 13+ · Grades 6-12</p>
+      <h1 class="text-5xl md:text-6xl font-serif mb-4">Inhuman Series</h1>
+      <p class="text-xl text-brand-warm/80 max-w-2xl leading-relaxed">
+        Cross the wall. Break every rule. A two-book duology where the line between human and animal no longer exists.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-container grid md:grid-cols-3 gap-10">
+    <div class="md:col-span-2">
+      <p class="section-subheading">About the Series</p>
+      <h2 class="font-serif text-3xl text-brand-dark mb-4">The World of Inhuman</h2>
+      <div class="prose prose-lg max-w-none text-brand-dark/80 space-y-4">
+        <p>
+          The Ferae Naturae virus swept through civilization like wildfire, splicing human DNA with animal DNA and turning millions into terrifying and sometimes beautiful hybrids called manimals. To protect the uninfected, the government erected the Titan wall, sealing the Feral Zone and everyone inside it away from humanity forever.
+        </p>
+        <p>
+          Lane McEvoy knows she will never cross that wall. Until she has to. When her father is taken into the Zone, Lane follows and discovers a world more complex, more dangerous, and more human than any quarantine map suggests.
+        </p>
+        <p>
+          Built on real virology and genetic science, with Kirkus and Booklist praise for its bizarre imagery and fast-paced mash-up of romance and horror.
+        </p>
+      </div>
+
+      <div class="mt-8 p-5 bg-brand-warm border-l-4 border-brand-accent rounded-sm">
+        <h3 class="font-serif text-lg text-brand-dark mb-2">The Real Science Inside</h3>
+        <p class="text-sm text-brand-dark/70 leading-relaxed">
+          <em>Inhuman</em> draws on real zoonotic disease research, gene-virus interactions, and ecological collapse theory. It is ideal for <strong>NGSS connections</strong> in life science and bioethics discussions in grades 6-12.
+        </p>
+        <a href="/for-educators" class="text-xs uppercase tracking-widest text-brand-accent font-semibold mt-3 inline-block hover:underline">
+          Educator Resources &rarr;
+        </a>
+      </div>
+    </div>
+
+    <aside>
+      <h3 class="text-xs uppercase tracking-widest text-brand-accent mb-4 font-semibold">Reading Order</h3>
+      <ol class="space-y-4">
+        {seriesBooks.map((book) => (
+          <li>
+            <a href={`/books/${book.slug}`} class="group flex gap-4 items-start p-4 bg-white rounded-sm shadow-sm hover:shadow-md transition-shadow border border-brand-dark/5">
+              <span class="text-2xl font-serif text-brand-accent/30 font-bold leading-none mt-1">{book.seriesNumber}</span>
+              <div>
+                <p class="font-serif text-brand-dark group-hover:text-brand-accent transition-colors">{book.title}</p>
+                <p class="text-xs text-brand-dark/40 mt-0.5">{book.pubDate}</p>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ol>
+
+      <div class="mt-6 p-4 bg-brand-dark text-brand-warm rounded-sm">
+        <p class="text-xs uppercase tracking-widest text-brand-gold mb-2">Awards &amp; Recognition</p>
+        <ul class="text-xs text-brand-warm/70 space-y-1">
+          <li>Kirkus starred review</li>
+          <li>Tome Society It List 2014-15</li>
+          <li>Truman Award nominee</li>
+          <li>Great Lakes Great Reads nominee</li>
+          <li>Approx. 18 language translations</li>
+        </ul>
+      </div>
+
+      <div class="mt-4 p-4 border border-brand-dark/10 rounded-sm">
+        <p class="text-xs font-semibold uppercase tracking-widest text-brand-dark mb-1">Content Notes</p>
+        <p class="text-xs text-brand-dark/60">Ages 13+. Kissing, mild profanity, suspense, and moderate creature and combat violence.</p>
+      </div>
+    </aside>
+  </section>
+
+  <section class="bg-brand-warm/50 py-16">
+    <div class="section-container">
+      <h2 class="section-heading mb-8">The Books</h2>
+      <div class="grid md:grid-cols-2 gap-8 max-w-2xl">
+        {seriesBooks.map((book) => (
+          <a href={`/books/${book.slug}`} class="group bg-white rounded-sm shadow-md hover:shadow-xl transition-shadow overflow-hidden">
+            <div class="aspect-[2/3] bg-brand-mid flex items-center justify-center">
+              {book.coverImage
+                ? <img src={book.coverImage} alt={`${book.title} cover`} class="w-full h-full object-cover" />
+                : (
+                  <div class="text-center p-6">
+                    <p class="text-xs uppercase tracking-widest text-brand-gold mb-2">Inhuman #{book.seriesNumber}</p>
+                    <p class="font-serif text-brand-warm text-2xl">{book.title}</p>
+                    <p class="text-xs text-brand-warm/40 mt-2">Cover coming soon</p>
+                  </div>
+                )}
+            </div>
+            <div class="p-5">
+              <h3 class="font-serif text-xl text-brand-dark mb-1 group-hover:text-brand-accent transition-colors">{book.title}</h3>
+              <p class="text-xs text-brand-dark/50 mb-3">{book.pubDate} · {book.ageRange} · {book.gradeRange}</p>
+              <p class="text-sm text-brand-dark/70 line-clamp-3">{book.shortSynopsis}</p>
+              <p class="text-xs uppercase tracking-widest text-brand-accent mt-4 font-semibold">Read More &rarr;</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

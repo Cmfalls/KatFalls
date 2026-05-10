@@ -1,0 +1,223 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Press Kit for Kat Falls - Bio, Photos, Book Covers & Media Contact"
+  description="Press kit for Kat Falls with author photos, book covers, bios in three lengths, Q&A materials, awards, and media contact information."
+>
+
+  <section class="bg-brand-dark text-brand-warm py-20">
+    <div class="section-container">
+      <p class="section-subheading text-brand-gold">Media &amp; Publicity</p>
+      <h1 class="text-5xl md:text-6xl font-serif mb-4">Press Kit</h1>
+      <p class="text-xl text-brand-warm/80 max-w-2xl">
+        All assets available for editorial use. For permissions or additional materials, contact Adams Literary.
+      </p>
+    </div>
+  </section>
+
+  <!-- Media contact -->
+  <section class="bg-brand-accent text-white py-8">
+    <div class="section-container flex flex-col sm:flex-row gap-6 justify-between items-start sm:items-center">
+      <div>
+        <p class="text-xs uppercase tracking-widest text-white/70 mb-1">Literary Agent / Media Contact</p>
+        <p class="font-serif text-xl">Josh Adams · Adams Literary</p>
+        <a href="https://adamsliterary.com/kat-falls" target="_blank" rel="noopener"
+           class="text-xs text-white/80 hover:text-white underline">adamsliterary.com/kat-falls</a>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-widest text-white/70 mb-1">Direct Inquiries</p>
+        <a href="mailto:katfalls77@gmail.com" class="font-semibold hover:underline">katfalls77@gmail.com</a>
+        <p class="text-xs text-white/70 mt-0.5">Use subject line: PRESS / MEDIA</p>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-widest text-white/70 mb-1">Scholastic Press Editor</p>
+        <p class="text-sm">Nicholas Eliopulos</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Author photos -->
+  <section class="section-container border-b border-brand-dark/10">
+    <p class="section-subheading">Photos</p>
+    <h2 class="font-serif text-3xl text-brand-dark mb-6">Author Photos</h2>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      {[
+        { crop: 'Portrait (3:4)',   note: 'Primary headshot — for print and editorial' },
+        { crop: 'Landscape (16:9)', note: 'Event programs, banner graphics, web headers' },
+        { crop: 'Square (1:1)',     note: 'Social media, avatars, book fair materials' },
+      ].map(({ crop, note }) => (
+        <div class="bg-white border border-brand-dark/10 rounded-sm overflow-hidden shadow-sm">
+          <div class="aspect-[4/3] bg-brand-warm/50 flex items-center justify-center">
+            <img
+              src="/images/author/kat-falls.jpg"
+              alt={`Kat Falls author photo — ${crop}`}
+              class="w-full h-full object-cover object-top"
+            />
+          </div>
+          <div class="p-4 flex items-center justify-between">
+            <div>
+              <p class="font-semibold text-sm text-brand-dark">{crop}</p>
+              <p class="text-xs text-brand-dark/50">{note}</p>
+            </div>
+            <!-- TODO: Link to high-res download once 300-DPI photos are available -->
+            <a href="#" class="text-xs uppercase tracking-widest text-brand-accent font-semibold hover:underline">
+              Hi-Res ↓
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-xs text-brand-dark/40 italic">
+      TODO: Commission new professional headshot in three crops (portrait/landscape/square) with photographer credit.
+      Current image is from the Northwestern faculty page.
+    </p>
+    <p class="text-xs text-brand-dark/40 italic mt-1">
+      Photo credit: [Photographer Name] — please include in all editorial uses.
+    </p>
+  </section>
+
+  <!-- Book covers -->
+  <section class="section-container border-b border-brand-dark/10">
+    <p class="section-subheading">Covers</p>
+    <h2 class="font-serif text-3xl text-brand-dark mb-6">Book Covers</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-4">
+      {[
+        { title: 'Dark Life',  isbn: '978-0545178143', year: '2010' },
+        { title: 'Rip Tide',   isbn: '978-0545178433', year: '2011' },
+        { title: 'Inhuman',    isbn: '978-0545370998', year: '2013' },
+        { title: 'Undaunted',  isbn: '978-0545371025', year: '2019' },
+      ].map(({ title, isbn, year }) => (
+        <div class="bg-white border border-brand-dark/10 rounded-sm overflow-hidden shadow-sm">
+          <div class="aspect-[2/3] bg-brand-mid flex items-center justify-center text-center p-4">
+            <div>
+              <p class="font-serif text-brand-warm">{title}</p>
+              <p class="text-xs text-brand-warm/30 mt-1">Cover art — request from Scholastic</p>
+            </div>
+          </div>
+          <div class="p-3">
+            <p class="font-semibold text-sm text-brand-dark">{title}</p>
+            <p class="text-xs text-brand-dark/40">{year} · ISBN {isbn}</p>
+            <a href="#" class="text-xs text-brand-accent font-semibold hover:underline mt-1 inline-block">Hi-Res ↓</a>
+          </div>
+        </div>
+      ))}
+    </div>
+    <p class="text-xs text-brand-dark/40 italic">
+      TODO: Request 300-DPI cover files for all four titles from Scholastic Press permissions (rights@scholastic.com).
+    </p>
+  </section>
+
+  <!-- Bios in three lengths -->
+  <section class="section-container border-b border-brand-dark/10">
+    <p class="section-subheading">Bios</p>
+    <h2 class="font-serif text-3xl text-brand-dark mb-6">Author Bios</h2>
+
+    <div class="space-y-8">
+
+      <!-- One-line bio -->
+      <div class="p-6 bg-white border border-brand-dark/10 rounded-sm shadow-sm">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="font-semibold text-sm uppercase tracking-wide text-brand-dark">One-Line Bio</h3>
+          <span class="text-xs text-brand-dark/40">~20 words · For event programs, bylines</span>
+        </div>
+        <p class="font-serif text-brand-dark text-lg leading-relaxed">
+          Kat Falls is a New York Times bestselling author of adventure novels for middle grade and young adult readers, including <em>Dark Life</em> and <em>Inhuman</em>.
+        </p>
+        <!-- TODO: Copy button would require JS — consider adding -->
+      </div>
+
+      <!-- Short bio -->
+      <div class="p-6 bg-white border border-brand-dark/10 rounded-sm shadow-sm">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="font-semibold text-sm uppercase tracking-wide text-brand-dark">Short Bio</h3>
+          <span class="text-xs text-brand-dark/40">~75 words · For conference programs, press releases</span>
+        </div>
+        <p class="text-brand-dark/80 leading-relaxed">
+          Kat Falls is a New York Times bestselling author whose novels blend real science with fast-paced adventure. Her debut <em>Dark Life</em> — a subsea Western set on a flooded frontier — was named an Al Roker TODAY Show Book Club pick and optioned by Disney. Its sequel, <em>Rip Tide</em>, followed in 2011. Her YA series opener <em>Inhuman</em> earned a Kirkus starred review. She holds an MFA from Northwestern University, where she teaches screenwriting, and lives in Evanston, Illinois.
+        </p>
+      </div>
+
+      <!-- Long bio -->
+      <div class="p-6 bg-white border border-brand-dark/10 rounded-sm shadow-sm">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="font-semibold text-sm uppercase tracking-wide text-brand-dark">Long Bio</h3>
+          <span class="text-xs text-brand-dark/40">~200 words · For author pages, interviews, media kits</span>
+        </div>
+        <div class="text-brand-dark/80 leading-relaxed space-y-3 text-sm">
+          <p>
+            Kat Falls is a New York Times bestselling author of action-packed science fiction for readers ages 9 and up. Her debut novel <em>Dark Life</em> (Scholastic Press, 2010) — a "subsea Western" following 15-year-old Ty on the ocean-floor frontier of a flooded future Earth — was named an Al Roker TODAY Show Book Club pick in July 2010, won the 2011 Friends of American Writers Juvenile Literary Award, and was optioned by Disney with Robert Zemeckis (ImageMovers/The Gotham Group) attached to direct. The sequel, <em>Rip Tide</em>, arrived in 2011; both books are Junior Library Guild Selections.
+          </p>
+          <p>
+            Her YA duology — <em>Inhuman</em> (2013) and <em>Undaunted</em> (2019) — follows Lane McEvoy through a world split by a virus that splices human and animal DNA. <em>Inhuman</em> earned a Kirkus starred review and appeared on the Tome Society It List 2014–15. The series has been translated into approximately 18 languages.
+          </p>
+          <p>
+            A WGA member with screenwriting credits at Disney and four optioned independent screenplays, Falls holds a BS from Rensselaer Polytechnic, an MA from The New School, and an MFA in Writing for the Screen and Stage from Northwestern University, where she now teaches as faculty. She also teaches at StoryStudio Chicago and is a Ragdale Foundation resident. She lives in Evanston, Illinois with her husband, Tony Award–winning director Robert Falls, and their three children.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Q&A Pack -->
+  <section class="section-container border-b border-brand-dark/10">
+    <p class="section-subheading">Interview</p>
+    <h2 class="font-serif text-3xl text-brand-dark mb-6">Q&amp;A Pack</h2>
+    <div class="space-y-6 max-w-3xl">
+      {[
+        {
+          q: 'Where did the idea for Dark Life come from?',
+          a: 'TODO: Author answer.',
+        },
+        {
+          q: 'How did your screenwriting background influence your fiction?',
+          a: 'TODO: Author answer.',
+        },
+        {
+          q: 'What research went into the science of Dark Life and Inhuman?',
+          a: 'TODO: Author answer.',
+        },
+        {
+          q: 'What are you working on next?',
+          a: 'TODO: Author answer.',
+        },
+      ].map(({ q, a }) => (
+        <div class="border-l-4 border-brand-dark/10 pl-5">
+          <p class="font-serif text-lg text-brand-dark mb-2">{q}</p>
+          <p class="text-brand-dark/60 text-sm italic">{a}</p>
+        </div>
+      ))}
+    </div>
+    <a href="#" class="btn-outline mt-8 inline-block text-sm">Download Full Q&amp;A Pack (PDF)</a>
+  </section>
+
+  <!-- Key credentials -->
+  <section class="section-container">
+    <h2 class="font-serif text-2xl text-brand-dark mb-6">Key Credentials for Editorial Use</h2>
+    <ul class="grid sm:grid-cols-2 gap-3">
+      {[
+        'New York Times Bestselling Author',
+        'Al Roker TODAY Show Book Club Pick (July 2010)',
+        '2011 Friends of American Writers Juvenile Literary Award Winner',
+        'Junior Library Guild Selection (Dark Life &amp; Rip Tide)',
+        'Kirkus Starred Review (Inhuman)',
+        'Disney Film Option — Dark Life (Robert Zemeckis / ImageMovers / The Gotham Group; in development)',
+        '~18 Language Translations',
+        '10-State Award Nominations (Dark Life)',
+        'Tome Society It List 2014–15 (Inhuman)',
+        'MFA, Northwestern University — Now Faculty',
+        'WGA Member — Prior Disney Screenwriting Credits',
+      ].map(cred => (
+        <li class="flex items-start gap-2 text-sm text-brand-dark/70">
+          <span class="text-brand-gold mt-0.5 shrink-0">✦</span>
+          <span set:html={cred} />
+        </li>
+      ))}
+    </ul>
+  </section>
+
+</BaseLayout>

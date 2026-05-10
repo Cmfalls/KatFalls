@@ -1,0 +1,73 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const upcomingEvents: {
+  date: string;
+  title: string;
+  location: string;
+  description?: string;
+  link?: string;
+}[] = [];
+
+const pastEvents: typeof upcomingEvents = [];
+---
+
+<BaseLayout title="Kat Falls Events - School Visits, Festivals & Appearances" description="Kat Falls events, book signings, school visits, and author appearances.">
+  <section class="bg-brand-dark text-brand-warm py-24">
+    <div class="section-container">
+      <p class="section-subheading text-brand-gold">Meet Kat</p>
+      <h1 class="text-5xl md:text-6xl font-serif">Events</h1>
+    </div>
+  </section>
+
+  <section class="section-container">
+    <h2 class="section-heading">Upcoming Events</h2>
+
+    {upcomingEvents.length > 0 ? (
+      <ul class="space-y-6 mt-8">
+        {upcomingEvents.map((event) => (
+          <li class="border-l-4 border-brand-accent pl-6 py-2">
+            <p class="text-xs uppercase tracking-widest text-brand-accent mb-1">{event.date}</p>
+            <h3 class="font-serif text-xl text-brand-dark">{event.title}</h3>
+            <p class="text-brand-dark/60 text-sm mt-1">{event.location}</p>
+            {event.description && <p class="text-brand-dark/70 mt-2">{event.description}</p>}
+            {event.link && (
+              <a href={event.link} target="_blank" rel="noopener" class="btn-primary inline-block mt-4 text-sm">
+                More Info
+              </a>
+            )}
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="text-brand-dark/40 italic mt-6">No upcoming events scheduled. Check back soon!</p>
+    )}
+  </section>
+
+  <section class="bg-brand-mid text-brand-warm py-16">
+    <div class="section-container text-center">
+      <h2 class="text-3xl font-serif mb-4">Invite Kat to Your School or Event</h2>
+      <p class="text-brand-warm/70 max-w-xl mx-auto mb-8">
+        Kat loves connecting with young readers and educators. Reach out to inquire about school visits, festivals, and speaking engagements.
+      </p>
+      <a href="/contact" class="btn-primary">Get in Touch</a>
+    </div>
+  </section>
+
+  {pastEvents.length > 0 && (
+    <section class="section-container">
+      <h2 class="section-heading">Past Events</h2>
+      <ul class="space-y-4 mt-6">
+        {pastEvents.map((event) => (
+          <li class="flex gap-6 items-start border-b border-brand-dark/10 pb-4">
+            <span class="text-sm text-brand-dark/40 min-w-[100px]">{event.date}</span>
+            <div>
+              <h3 class="font-serif text-lg text-brand-dark">{event.title}</h3>
+              <p class="text-sm text-brand-dark/60">{event.location}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</BaseLayout>

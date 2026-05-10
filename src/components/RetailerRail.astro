@@ -1,0 +1,51 @@
+---
+interface Props {
+  isbn: string;
+  title: string;
+  overrides?: {
+    name: string;
+    href: string;
+    priority?: boolean;
+  }[];
+}
+const { isbn, title, overrides } = Astro.props;
+const encoded = encodeURIComponent(title);
+
+// Retailer links — update with Books2Read universal link once created
+const defaultRetailers = [
+  { name: 'Bookshop.org',              href: `https://bookshop.org/search?keywords=${isbn}`,                      priority: true  },
+  { name: 'Amazon',                    href: `https://www.amazon.com/s?k=${isbn}`,                                priority: true  },
+  { name: 'Barnes & Noble',            href: `https://www.barnesandnoble.com/s/${isbn}`,                          priority: true  },
+  { name: 'Apple Books',               href: `https://books.apple.com/search?term=${isbn}`,                       priority: false },
+  { name: 'Kobo',                      href: `https://www.kobo.com/us/en/search?query=${isbn}`,                   priority: false },
+  { name: 'Libro.fm',                  href: `https://libro.fm/search?utf8=%E2%9C%93&search%5Bquery%5D=${isbn}`, priority: false },
+  { name: 'Libby / OverDrive',         href: `https://libbyapp.com/search/all/search/query-${encoded}/`,         priority: false },
+  { name: 'The Book Stall (Evanston)', href: `https://www.thebookstall.com/search/site/${isbn}`,                 priority: false },
+];
+
+const retailers = overrides?.length ? overrides : defaultRetailers;
+---
+
+<div>
+  <p class="text-xs uppercase tracking-widest text-brand-accent mb-3 font-semibold">Buy or Borrow</p>
+  <div class="flex flex-wrap gap-2">
+    {retailers.map(({ name, href, priority }) => (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        class:list={[
+          'text-xs font-medium px-3 py-1.5 rounded-sm border transition-colors',
+          priority
+            ? 'border-brand-dark bg-brand-dark text-brand-warm hover:bg-brand-accent hover:border-brand-accent'
+            : 'border-brand-dark/30 text-brand-dark hover:border-brand-accent hover:text-brand-accent',
+        ]}
+      >
+        {name}
+      </a>
+    ))}
+  </div>
+  <p class="text-xs text-brand-dark/40 mt-3">
+    Support your local library — check <a href="https://libbyapp.com" target="_blank" rel="noopener" class="underline hover:text-brand-accent">Libby</a> first.
+  </p>
+</div>

@@ -1,0 +1,156 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const reviewSections = [
+  {
+    title: 'Undaunted',
+    subtitle: 'Editorial Reviews for Undaunted',
+    age: 'Ages 12-18',
+    reviews: [
+      {
+        source: 'Kirkus Reviews',
+        date: 'January 15, 2019',
+        quote:
+          'It has been six months since 17-year-old Lane McEvoy returned to the safety of the West from the dark chaos of the Feral Zone. Now, Lane must return to the land of her nightmares with her father, who has been hired to fetch blood samples from those infected with the Ferae virus so scientists can complete development of a vaccine. The 50 types of virus strains cause sufferers to mutate into lions, apes, a Komodo dragon, and other animal forms. When Lane arrives in the East, she discovers no one has seen broody heartthrob Rafe, who was infected just before Lane returned home. She will ally herself with old friend Everson and a group of fierce lion-women in order to track him down. And when she finds him, Lane might have to carry through on her promise to end his life if he has gone feral. There is a lot going on in terms of events and character development but Falls makes it work. The action unfolds evenly and swiftly: Rafe\'s and Everson\'s respective histories are revealed, and narrator-protagonist Lane remains strong and steady even as she struggles with the PTSD resulting from her previous time in the zone. A conclusion worth waiting for.',
+      },
+    ],
+  },
+  {
+    title: 'Inhuman',
+    subtitle: 'Editorial Reviews for Inhuman',
+    age: 'Ages 12-up',
+    reviews: [
+      {
+        source: 'Kirkus Reviews',
+        date: 'Starred Review, August 14, 2013',
+        quote:
+          'Falls\' first novel for teens is the nail-biting start of a new trilogy. Nineteen years ago, the deadly Ferae Naturae virus killed 40 percent of America\'s population. Now, 16 year-old Lane McEvoy lives a safe, sterile life in the shadow of the Titan, a 700-foot-tall wall that extends from Canada to the Gulf of Mexico, separating the uninfected west from the Feral Zone to the east. Lane\'s life is turned upside down when the head of Biohazard Defense makes her an offer she cannot afford to refuse. Director Spurling has evidence that Lane\'s father, Mack, is a fetch, paid to retrieve valuables left behind during the exodus two decades before. Unless Lane locates her father so he can recover something the director has lost, Spurling will expose Mack\'s treason, and Lane will lose him to execution by firing squad. As she ventures into the Feral Zone, Lane picks up two unlikely allies: the enigmatic feral-hunter Rafe and the militant, by-the-book guard Everson. Readers will find themselves drawn into Lane\'s story through the author\'s consistent worldbuilding and striking turns of phrase. Lane is an appealing and credible protagonist; her progression from obsessive cleanliness to fearless engagement with the infected is subtle and believable. Sure to satisfy fans of the dystopian-romance genre and to gather new ones along the way.',
+      },
+      {
+        source: 'Publishers Weekly',
+        date: 'August 19, 2013',
+        quote:
+          'Falls begins a trilogy set in a dystopian America, a generation after a hybridized virus killed or mutated millions. Survivors live west of the Mississippi, with a giant wall protecting them from the Feral Zone to the east. When 16-year-old Lane McEvoy\'s father goes missing, she learns that he was a fetch, illegally journeying east to retrieve precious artwork and other items. A powerful official blackmails Lane into helping find her father; when she is unsuccessful, she must complete his assignment herself. Accompanied by rule-breaking bad boy Rafe and handsome border guard Everson, Lane ventures into the Feral Zone, trying to survive the legacy of the Ferae Naturae virus, including animal crossbreeds and feral manimals. Despite the obligatory love triangle, Falls presents Lane as a competent, admirable heroine who more than holds her own. The setting holds great promise, and its dangers are quite entertaining: from the dreaded chimpacabra and piranha-bats to people infected by lion, tiger, or fox DNA, there is lovely and bizarre imagery involved. A solid start, even when the book falls into familiar patterns for the genre.',
+      },
+      {
+        source: 'School Library Journal',
+        date: 'November 1, 2013',
+        quote:
+          'Years ago, genetic experimentation gone wrong unleashed the Ferae virus, which killed millions and mutated more into half-human, half-animal hybrids. Humanity fled west and built a wall along the Mississippi River. Sixteen-year-old Lane McEvoy has grown up in the West, but she has just found out that her father, who she thought was an art dealer, is actually a fetch, someone who illegally crosses the quarantine line to retrieve items from the East. She is blackmailed into breaching the wall and convincing him to do a job for a powerful government official, but when she cannot locate him, she must perform the fetch herself with help from mysterious border guard Everson and infuriating mercenary Rafe. This first installation in a trilogy is well imagined, set in an original world whose convincing history, politics, and social norms come out naturally as the story unfolds. The animal hybrids are sometimes intriguing and sometimes terrifying, but are always compelling. While the love triangle is perhaps inevitable, Lane, Everson, and Rafe are believable, and new facets of their personalities are revealed over their journey. This is a perfectly plotted, deliciously suspenseful journey through a lush, intriguing society in which nothing is quite as it seems.',
+      },
+      {
+        source: 'VOYA Magazine / Voice of Youth Advocates',
+        date: '',
+        quote:
+          'An amusement park attraction gone wrong gives way to a devastating virus that turns humans into feral manimals. Delaney, Lane for short, has heard similar stories from her dad in the form of fairytales, but these manimals are not the cute and cuddly kind. Lane is safe as long as she stays confined behind the feral zone. Then, she finds out her dad is out there. He is a fetch, a person who enters the zone to obtain priceless items, punishable by death. But Lane\'s dad is wanted for one last fetch that may save his life. On her quest to help him, Lane meets two boys: a soldier on a mission to find a cure, and an unruly boy who grew up in the zone and seems to know more about her and her dad than he lets on. The inhuman world that author Falls has shaped is both disturbing and fascinating. Falls\'s creatures are frighteningly beautiful as are the traits that distinguish them from human and animal. This is recommended for readers looking for a thrilling, page-turning read.',
+      },
+    ],
+  },
+  {
+    title: 'Dark Life',
+    subtitle: 'Editorial Reviews for Dark Life',
+    age: 'Ages 9-12',
+    reviews: [
+      {
+        source: 'Publishers Weekly',
+        date: 'April 5, 2010',
+        quote:
+          'It is not Go West, young man, but Go Deep in this action-packed aquatic adventure by newcomer Falls. Years after climate changes have devastated the Earth\'s surface, the new frontier is underwater, where rugged individualists have carved out lives on the ocean floor. Fifteen-year-old narrator Ty is part of the first generation born and bred in the so-called Dark Life. When he meets Gemma, a Topsider girl searching for her lost brother among the prospectors and toughs of the region, Ty feels obligated to protect her, especially when they run afoul of the Seablite Gang, pirates who have been preying on local settlers. Though the science and future history are only lightly explored, there is no denying the nifty premise, solid characterization, and tense moments that contribute to a cinematic reading experience. Falls\'s undersea world warrants further exploration.',
+      },
+      {
+        source: 'Kirkus Reviews',
+        date: 'April 1, 2010',
+        quote:
+          'The worldbuilding of countless eco-thrillers serves here as the setting for a classic Western. A Western, that is, with plankton instead of cows, harpoons instead of six-shooters and submarines instead of covered wagons. Ty lives below the ocean, in a future in which water levels have risen and Topsiders live cramped together in unbearable conditions. Undersea, any brave settler can stake a claim and build a huge homestead. Ty was born down here, and he loves it. When he encounters freckle-faced Topsider orphan Gemma, he revels in showing her his world. If only they were not in danger from the villainous Seablite gang that keeps attacking homesteads. This caper features a slew of Western standards and a few plot twists keep the tension high. A thrilling conversion of the classics to one of our newer frontiers.',
+      },
+      {
+        source: 'School Library Journal',
+        date: 'Grade 6-10',
+        quote:
+          'In this futuristic coming-of-age tale, 15-year-old Ty has spent his whole life in a deep-sea colony on the ocean floor. His family and the other pioneers provide fish and other food for the Commonwealth citizens who live aboveground in stacked cities following earthquakes and tsunamis that destroyed much of the Earth. The pioneers chafe under the harsh rule of the Commonwealth, a situation made worse when those who live subsea are charged with capturing a gang of pirates that has been terrorizing Commonwealth ships and pioneer homesteads. First-time author Falls has created a riveting adventure story that action fans and reluctant readers will enjoy for its fast pace. Teens will like the budding romance between Ty and Gemma and the marvelous, imaginative depictions of life on the ocean floor. Readers will cheer Ty on in his pursuit of the pirates and clamor for more tales of undersea life.',
+      },
+      {
+        source: 'Booklist',
+        date: 'Grades 6-9',
+        quote:
+          'Sixteen-year-old Ty, first child born to the pioneers who live in the depths of the ocean, has little patience for topsiders until he meets feisty Gemma, who immediately enlists his help to locate her missing older brother. Their search is interrupted by pirate attacks of the notorious Seablite Gang and an ultimatum from the Commonwealth Government that makes the pioneers responsible for stopping the raids. Although set in an undersea future, this rousing adventure has all the hallmarks of a western, including outlaws, homesteaders, and plenty of shoot-em-up action with harpoonlike weapons. Good guys and bad guys are fairly obvious, but the exotic setting and well-conceived details about undersea living, along with likable characters and a minor surprise at the end, will keep readers turning the pages.',
+      },
+    ],
+  },
+  {
+    title: 'Rip Tide',
+    subtitle: 'Editorial Reviews for Rip Tide',
+    age: 'Ages 9-12',
+    reviews: [
+      {
+        source: 'Publishers Weekly',
+        date: 'June 2011',
+        quote:
+          'A gruesome discovery marks the start of another perilous adventure for underwater colonist Ty and his surface ally Gemma in this sequel to Dark Life. While preparing to sell the season\'s seaweed crop, Ty stumbles across an abandoned township, its doors chained shut and its residents murdered. Soon after, the colonists\' deal with another township goes bad, and Ty\'s parents are kidnapped. As Ty and Gemma try to track down those responsible and save their loved ones, they are forced to join up with the notorious Seablite Gang, infiltrate the rough-and-tumble town of Rip Tide, fight for their lives against sea monsters and human predators, and discover who is killing entire townships and why. Atmospheric and tense, built around an expertly used postapocalyptic-meets-Wild West setting, this story is a whole lot of fun and will not disappoint fans of the first book.',
+      },
+      {
+        source: 'School Library Journal',
+        date: 'Grade 6-10',
+        quote:
+          'In this futuristic follow-up to Dark Life, 15-year-old Ty Townson and his friend Gemma discover a submerged township filled with bodies in a trash vortex. Later, when Ty\'s parents go missing, the duo sets out to find them, fearing they will meet a similar fate. Ty possesses a dark gift enabling him to shine and generate biosonar pulses used to his advantage in dangerous situations. Gemma\'s fear of water has kept her from moving in with the Townsons permanently, but her fondness for Ty and his family and her dark gift of exceptional hearing make her an equal protagonist. Readers will empathize with the subsea pioneers and immerse themselves in this burgeoning new world that leaves the door open for more adventures.',
+      },
+      {
+        source: 'KidsReads.com',
+        date: '',
+        quote:
+          'In Dark Life, author Kat Falls set a tense scene in a dystopian future, conflict abounding between those living on a nearly decimated planetary surface and those pioneers who have used science to make a home on the sea floor. In the follow-up, Rip Tide, the gang is still a threat and danger continues to lurk around every corner. The action is fast, almost non-stop, with a couple of good plot twists and some wicked details illuminating the sad state of affairs in this new world. Rip Tide is well written and well paced, and the simplicity of its language betrays the complexity of its ideas. While the futuristic bits are fun and clever, the real power here is in the way Falls examines corruption of authority, oppression of the masses, and issues such as prejudice, poverty, and stereotyping.',
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Reviews - Kat Falls"
+  description="Editorial reviews for Dark Life, Rip Tide, Inhuman, and Undaunted by Kat Falls."
+>
+  <section class="bg-brand-dark text-brand-warm py-20">
+    <div class="section-container">
+      <p class="section-subheading text-brand-gold">Critical Response</p>
+      <h1 class="text-5xl md:text-6xl font-serif">Reviews</h1>
+      <p class="text-xl text-brand-warm/80 max-w-3xl mt-4">
+        A collection of editorial reviews for Kat Falls's middle grade and young adult novels.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-container">
+    <div class="flex flex-wrap gap-3 mb-12">
+      {reviewSections.map(({ title }) => (
+        <a
+          href={`#${title.toLowerCase().replace(/\s+/g, '-')}`}
+          class="text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-sm border border-brand-dark/15 text-brand-dark hover:border-brand-accent hover:text-brand-accent transition-colors"
+        >
+          {title}
+        </a>
+      ))}
+    </div>
+
+    <div class="space-y-16">
+      {reviewSections.map(({ title, subtitle, age, reviews }) => (
+        <section id={title.toLowerCase().replace(/\s+/g, '-')} class="scroll-mt-24">
+          <div class="max-w-4xl">
+            <p class="section-subheading">{age}</p>
+            <h2 class="font-serif text-3xl text-brand-dark mb-3">{subtitle}</h2>
+            <div class="space-y-6 mt-8">
+              {reviews.map(({ source, date, quote }) => (
+                <article class="bg-white border border-brand-dark/8 rounded-sm shadow-sm p-6">
+                  <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-3">
+                    <h3 class="font-semibold text-brand-dark">{source}</h3>
+                    {date && <p class="text-xs uppercase tracking-widest text-brand-accent">{date}</p>}
+                  </div>
+                  <p class="text-brand-dark/75 leading-relaxed text-sm">{quote}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

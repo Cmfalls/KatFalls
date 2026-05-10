@@ -1,0 +1,170 @@
+---
+import Navigation from '@components/Navigation.astro';
+import Footer from '@components/Footer.astro';
+import '@styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  schema?: Record<string, unknown> | Record<string, unknown>[] | null;
+}
+
+const {
+  title,
+  description = 'Kat Falls - New York Times bestselling author of Dark Life, Inhuman, and more.',
+  image = '/images/og-default.jpg',
+  schema = null,
+} = Astro.props;
+
+const siteUrl = 'https://katfalls.com';
+const siteBase = Astro.site ?? siteUrl;
+const canonicalURL = new URL(Astro.url.pathname, siteBase);
+const absoluteImage = new URL(image, siteBase).toString();
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${siteUrl}/#person`,
+  name: 'Kat Falls',
+  givenName: 'Kathleen',
+  additionalName: 'Moynihan',
+  familyName: 'Falls',
+  alternateName: ['Kat Falls', 'Kathleen Moynihan Falls'],
+  url: siteUrl,
+  image: `${siteUrl}/images/author/kat-falls.jpg`,
+  sameAs: [
+    'https://www.goodreads.com/author/show/3131761.Kat_Falls',
+    'https://write.northwestern.edu/faculty/kat-falls',
+    'https://adamsliterary.com/kat-falls',
+    'https://en.wikipedia.org/wiki/Kat_Falls',
+    'https://www.wikidata.org/wiki/Q6375302',
+    'https://www.scholastic.com/authors/kat-falls',
+    'https://www.amazon.com/author/katfalls',
+    'https://www.isfdb.org/cgi-bin/ea.cgi?Kat_Falls',
+    'https://www.worldcat.org/identities/lccn-n2009059148',
+    'https://www.librarything.com/author/fallskat',
+    'https://openlibrary.org/authors/OL6909060A',
+  ],
+  jobTitle: ['Author', 'Screenwriter', 'Writing Teacher'],
+  description: 'New York Times bestselling author of Dark Life and Inhuman.',
+  homeLocation: { '@type': 'Place', name: 'Evanston, Illinois' },
+  address: { '@type': 'PostalAddress', addressLocality: 'Evanston', addressRegion: 'IL' },
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'Rensselaer Polytechnic Institute' },
+    { '@type': 'CollegeOrUniversity', name: 'The New School' },
+    { '@type': 'CollegeOrUniversity', name: 'Northwestern University' },
+  ],
+  worksFor: [
+    {
+      '@type': 'CollegeOrUniversity',
+      name: 'Northwestern University',
+      url: 'https://write.northwestern.edu/faculty/kat-falls',
+    },
+    {
+      '@type': 'EducationalOrganization',
+      name: 'StoryStudio Chicago',
+      url: 'https://storystudiochicago.org',
+    },
+  ],
+  knowsAbout: [
+    'Middle grade fiction',
+    'Young adult fiction',
+    'Science fiction',
+    'Screenwriting',
+    'Creative writing',
+    'Ocean science',
+    'Virology',
+    'Bioethics',
+  ],
+  award: [
+    '2011 Friends of American Writers Juvenile Literary Award',
+    "Al Roker's Book Club for Kids TODAY Show Pick",
+    'Junior Library Guild Selection',
+    'Kirkus Starred Review',
+  ],
+};
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${siteUrl}/#organization`,
+  name: 'Kat Falls',
+  url: siteUrl,
+  founder: { '@id': `${siteUrl}/#person` },
+  sameAs: personSchema.sameAs,
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteUrl}/#website`,
+  url: siteUrl,
+  name: 'Kat Falls',
+  alternateName: 'Kat Falls Official Website',
+  description: 'Official website of Kat Falls, New York Times bestselling author of Dark Life and Inhuman.',
+  publisher: { '@id': `${siteUrl}/#organization` },
+  creator: { '@id': `${siteUrl}/#person` },
+  about: { '@id': `${siteUrl}/#person` },
+  inLanguage: 'en-US',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: { '@type': 'EntryPoint', urlTemplate: `${siteUrl}/books?q={search_term_string}` },
+    'query-input': 'required name=search_term_string',
+  },
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- SEO titles are fully formed upstream -->
+    <title set:html={title} />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Kat Falls" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={absoluteImage} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteImage} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/author/pfavico.ico" />
+
+    <!-- JSON-LD structured data -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    {schema && (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+  </head>
+  <body>
+    <Navigation />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

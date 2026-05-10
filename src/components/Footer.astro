@@ -1,0 +1,74 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-brand-dark text-brand-warm/80 mt-auto">
+  <div class="max-w-7xl mx-auto px-6 pt-14 pb-8 grid grid-cols-1 md:grid-cols-4 gap-10">
+    <div class="md:col-span-1">
+      <a href="/" class="font-serif text-2xl text-brand-warm block mb-3 hover:text-brand-gold transition-colors">Kat Falls</a>
+      <p class="text-sm leading-relaxed mb-5">
+        NYT bestselling author of <em>Dark Life</em> and <em>Inhuman</em>.<br />
+        Evanston, IL.
+      </p>
+      <div class="flex flex-wrap gap-3 text-xs">
+        <a href="https://www.goodreads.com/author/show/3131761.Kat_Falls" target="_blank" rel="noopener" class="hover:text-brand-gold transition-colors">Goodreads</a>
+        <span class="text-brand-warm/20">·</span>
+        <a href="https://www.facebook.com/people/Kat-Falls-author/100063437066189/" target="_blank" rel="noopener" class="hover:text-brand-gold transition-colors">Facebook</a>
+        <span class="text-brand-warm/20">·</span>
+        <a href="https://www.pinterest.com/katfalls77/" target="_blank" rel="noopener" class="hover:text-brand-gold transition-colors">Pinterest</a>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="text-xs uppercase tracking-widest text-brand-gold mb-4">Books</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/series/dark-life" class="hover:text-brand-warm transition-colors">Dark Life Series</a></li>
+        <li><a href="/books/dark-life" class="hover:text-brand-warm transition-colors pl-3 text-brand-warm/60">· Dark Life</a></li>
+        <li><a href="/books/rip-tide" class="hover:text-brand-warm transition-colors pl-3 text-brand-warm/60">· Rip Tide</a></li>
+        <li><a href="/series/inhuman" class="hover:text-brand-warm transition-colors">Inhuman Series</a></li>
+        <li><a href="/books/inhuman" class="hover:text-brand-warm transition-colors pl-3 text-brand-warm/60">· Inhuman</a></li>
+        <li><a href="/books/undaunted" class="hover:text-brand-warm transition-colors pl-3 text-brand-warm/60">· Undaunted</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="text-xs uppercase tracking-widest text-brand-gold mb-4">Explore</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/school-visits" class="hover:text-brand-warm transition-colors">School Visits</a></li>
+        <li><a href="/for-educators" class="hover:text-brand-warm transition-colors">For Educators</a></li>
+        <li><a href="/for-young-readers" class="hover:text-brand-warm transition-colors">For Young Readers</a></li>
+        <li><a href="/about" class="hover:text-brand-warm transition-colors">About Kat</a></li>
+        <li><a href="/press" class="hover:text-brand-warm transition-colors">Press Kit</a></li>
+        <li><a href="/contact" class="hover:text-brand-warm transition-colors">Contact</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="text-xs uppercase tracking-widest text-brand-gold mb-2">Newsletter</h3>
+      <p class="text-sm text-brand-warm/70 mb-4 leading-relaxed">
+        Get a free <em>Dark Life</em> deleted scene plus first word on new books. No spam, ever.
+      </p>
+      <form action="#" method="POST" class="space-y-2">
+        <input
+          type="email"
+          name="email"
+          placeholder="your@email.com"
+          required
+          class="w-full bg-brand-mid border border-brand-warm/20 rounded-sm px-3 py-2 text-sm text-brand-warm placeholder:text-brand-warm/30 focus:outline-none focus:ring-1 focus:ring-brand-gold"
+        />
+        <label class="flex items-start gap-2 text-xs text-brand-warm/50 cursor-pointer">
+          <input type="checkbox" name="age_gate" required class="mt-0.5 accent-brand-gold" />
+          <span>I am 13 or older, or I am a parent, teacher, or librarian signing up on behalf of a minor.</span>
+        </label>
+        <button type="submit" class="w-full bg-brand-accent text-white text-xs font-semibold uppercase tracking-widest py-2.5 rounded-sm hover:bg-brand-gold transition-colors">
+          Subscribe Free
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="border-t border-brand-warm/10 max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-brand-warm/30">
+    <span>&copy; {year} Kathleen "Kat" Falls. All rights reserved.</span>
+    <span>Literary agent: <a href="https://adamsliterary.com/kat-falls" target="_blank" rel="noopener" class="hover:text-brand-warm/60 transition-colors">Adams Literary</a></span>
+  </div>
+</footer>

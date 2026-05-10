@@ -1,0 +1,179 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Educator Resources by Kat Falls - Discussion Guides & Lessons"
+  description="Free educator resources for Dark Life and Inhuman by Kat Falls, including discussion guides, STEM tie-ins, and CCSS and NGSS lesson plans."
+>
+
+  <section class="bg-brand-dark text-brand-warm py-20">
+    <div class="section-container">
+      <p class="section-subheading text-brand-gold">Teachers · Librarians · Book Clubs</p>
+      <h1 class="text-5xl md:text-6xl font-serif mb-4">For Educators</h1>
+      <p class="text-xl text-brand-warm/80 max-w-2xl">
+        All resources are free and ungated. No email required. Download, share, and use freely.
+      </p>
+    </div>
+  </section>
+
+  <!-- Why these books for classrooms -->
+  <section class="bg-brand-accent text-white py-10">
+    <div class="section-container grid md:grid-cols-3 gap-8 text-center">
+      {[
+        { stat: 'Grades 5–7',   label: 'Dark Life Series',   sub: 'Middle Grade — real ocean science' },
+        { stat: 'Grades 7–9',   label: 'Inhuman Series',     sub: 'YA — virology, bioethics, genetics' },
+        { stat: 'CCSS + NGSS',  label: 'Standards-Aligned',  sub: 'ELA narrative writing + life science' },
+      ].map(({ stat, label, sub }) => (
+        <div>
+          <p class="font-serif text-4xl mb-1">{stat}</p>
+          <p class="font-semibold text-sm uppercase tracking-widest mb-0.5">{label}</p>
+          <p class="text-white/70 text-xs">{sub}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Dark Life resources -->
+  <section id="dark-life" class="section-container border-b border-brand-dark/10">
+    <div class="grid md:grid-cols-4 gap-10">
+      <div class="md:col-span-1">
+        <p class="text-xs uppercase tracking-widest text-brand-accent mb-2 font-semibold">Middle Grade · Gr 5–7</p>
+        <h2 class="font-serif text-3xl text-brand-dark mb-3">Dark Life Series</h2>
+        <p class="text-sm text-brand-dark/60 leading-relaxed mb-4">
+          Deep-sea biology, frontier survival, and questions of identity. Built on real NOAA ocean science.
+        </p>
+        <a href="/series/dark-life" class="text-xs uppercase tracking-widest text-brand-accent font-semibold hover:underline">About the Series →</a>
+      </div>
+
+      <div class="md:col-span-3 grid sm:grid-cols-2 gap-5">
+        {[
+          {
+            title: 'Classroom Activities & Discussion Guide — Dark Life & Rip Tide',
+            desc: 'Comprehensive discussion questions, classroom activities, and reading extensions for both Dark Life series books.',
+            tag: 'Activities',
+            href: 'https://darklifessyra.wordpress.com/dark-life-activities/',
+          },
+          {
+            title: 'SSYRA Curriculum Connections — Dark Life',
+            desc: 'Florida Sunshine State Young Readers Award curriculum connections, vocabulary, and activities aligned to Dark Life.',
+            tag: 'Curriculum',
+            href: 'https://darklifessyra.wordpress.com/dark-life-activities/',
+          },
+          {
+            title: 'Study Guide — Dark Life (BookRags)',
+            desc: 'Comprehensive lesson plans, chapter summaries, essay questions, and quiz materials for Dark Life.',
+            tag: 'Lesson Plan',
+            href: 'https://www.bookrags.com/lessonplan/dark-life/',
+          },
+          {
+            title: 'Real Science in Fiction — Dark Life',
+            desc: 'NOAA ocean science resources and real deep-sea biology connections to the world of Dark Life. MS-LS2 aligned.',
+            tag: 'STEM',
+            href: 'http://scienticity.net/wiki/Falls:_Dark_Life',
+          },
+          {
+            title: 'Dark Life — TV Tropes & Literary Analysis',
+            desc: 'Tropes, themes, and literary devices in Dark Life — useful for secondary ELA close-reading discussions.',
+            tag: 'Analysis',
+            href: 'https://tvtropes.org/pmwiki/pmwiki.php/Literature/DarkLife',
+          },
+          {
+            title: 'Scholastic Teacher Resources',
+            desc: 'Scholastic\'s teacher hub with additional teaching tools and curriculum resources.',
+            tag: 'Resource Hub',
+            href: 'https://www.scholastic.com/teachers/teaching-tools/home.html',
+          },
+        ].map(({ title, desc, tag, href }) => (
+          <div class="p-5 bg-white border border-brand-dark/10 rounded-sm shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <h3 class="font-serif text-base text-brand-dark">{title}</h3>
+              <span class="text-xs bg-brand-dark text-brand-warm px-2 py-0.5 rounded-sm shrink-0">{tag}</span>
+            </div>
+            <p class="text-xs text-brand-dark/60 mb-3">{desc}</p>
+            <a href={href} class="text-xs uppercase tracking-widest text-brand-accent font-semibold hover:underline">
+              Download Free →
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Inhuman resources -->
+  <section id="inhuman" class="section-container border-b border-brand-dark/10">
+    <div class="grid md:grid-cols-4 gap-10">
+      <div class="md:col-span-1">
+        <p class="text-xs uppercase tracking-widest text-brand-accent mb-2 font-semibold">YA · Gr 7–9</p>
+        <h2 class="font-serif text-3xl text-brand-dark mb-3">Inhuman Series</h2>
+        <p class="text-sm text-brand-dark/60 leading-relaxed mb-4">
+          Zoonotic viruses, gene editing, ecological collapse, and bioethics. Built on real virology research.
+        </p>
+        <a href="/series/inhuman" class="text-xs uppercase tracking-widest text-brand-accent font-semibold hover:underline">About the Series →</a>
+      </div>
+
+      <div class="md:col-span-3 grid sm:grid-cols-2 gap-5">
+        {[
+          {
+            title: 'Discussion Guide — Inhuman',
+            desc: 'Thematic analysis, character study, and discussion prompts for Inhuman (Book 1). Includes bioethics scenarios.',
+            tag: 'PDF',
+            href: '#',
+          },
+          {
+            title: 'Discussion Guide — Undaunted',
+            desc: 'Comprehension and discussion guide for Undaunted (Book 2), the duology conclusion.',
+            tag: 'PDF',
+            href: '#',
+          },
+          {
+            title: 'STEM Tie-In: Zoonotic Diseases',
+            desc: 'CDC zoonotic disease primers, NGSS LS3/LS4 connections, and bioethics frameworks.',
+            tag: 'Resource List',
+            href: '#',
+          },
+          {
+            title: 'Lesson Plan: Ethics of Genetic Modification',
+            desc: 'Bioethics discussion framework connecting Ferae Naturae virus to real CRISPR debates. Grades 7–9.',
+            tag: 'Lesson Plan',
+            href: '#',
+          },
+          {
+            title: 'Character Sheets & Printables',
+            desc: 'Character profile sheets, Feral Zone map activity, and vocabulary builder.',
+            tag: 'Printable',
+            href: '#',
+          },
+          {
+            title: 'Chapter 1 Read-Aloud',
+            desc: 'Audio/video of Chapter 1 of Inhuman for classroom introduction.',
+            tag: 'Video',
+            href: '#',
+          },
+        ].map(({ title, desc, tag, href }) => (
+          <div class="p-5 bg-white border border-brand-dark/10 rounded-sm shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <h3 class="font-serif text-base text-brand-dark">{title}</h3>
+              <span class="text-xs bg-brand-dark text-brand-warm px-2 py-0.5 rounded-sm shrink-0">{tag}</span>
+            </div>
+            <p class="text-xs text-brand-dark/60 mb-3">{desc}</p>
+            <a href={href} class="text-xs uppercase tracking-widest text-brand-accent font-semibold hover:underline">
+              Download Free →
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Book a visit CTA -->
+  <section class="section-container text-center max-w-2xl mx-auto">
+    <p class="section-subheading">Want More?</p>
+    <h2 class="font-serif text-3xl text-brand-dark mb-4">Bring Kat to Your School</h2>
+    <p class="text-brand-dark/60 mb-6">
+      In-person and virtual school visits available. Kat brings her deep-sea creature research PowerPoint, Q&amp;A, and book signing to grades 5–10.
+    </p>
+    <a href="/school-visits" class="btn-primary">Learn About School Visits →</a>
+  </section>
+
+</BaseLayout>

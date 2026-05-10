@@ -1,0 +1,134 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { books } from '../../data/books';
+import { buildSeriesPageSchema } from '../../data/structuredData';
+
+const seriesBooks = books.filter((book) => book.seriesSlug === 'dark-life-series');
+
+const schema = buildSeriesPageSchema({
+  ageRange: 'Ages 9-12 / Grades 5-7',
+  books: seriesBooks,
+  breadcrumbs: [
+    { name: 'Home', path: '/' },
+    { name: 'Books', path: '/books' },
+    { name: 'Dark Life Series', path: '/series/dark-life' },
+  ],
+  coverImage: '/images/books/dark-life-series.jpg',
+  description:
+    "The Dark Life middle grade series by Kat Falls follows Ty and Gemma across a flooded frontier where ocean-floor settlers guard dangerous secrets.",
+  genre: 'Middle Grade Sci-Fi Adventure',
+  name: 'Dark Life Series',
+  path: '/series/dark-life',
+});
+---
+
+<BaseLayout
+  title="Dark Life Series by Kat Falls - MG Sci-Fi Adventure"
+  description="The Dark Life middle grade series by Kat Falls - two sci-fi adventure novels set on the flooded ocean-floor frontier of tomorrow for ages 9-12."
+  schema={schema}
+>
+  <section class="bg-brand-dark text-brand-warm py-24 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image: url('/images/hero/jellyfish-hero.jpg');" />
+    <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/60 to-brand-dark" />
+    <div class="relative section-container">
+      <nav class="text-xs text-brand-warm/40 mb-6">
+        <a href="/" class="hover:text-brand-warm transition-colors">Home</a>
+        <span class="mx-2">&rsaquo;</span>
+        <a href="/books" class="hover:text-brand-warm transition-colors">Books</a>
+        <span class="mx-2">&rsaquo;</span>
+        <span class="text-brand-warm/70">Dark Life Series</span>
+      </nav>
+      <p class="section-subheading text-brand-gold">Middle Grade · Ages 9-12 · Grades 5-7</p>
+      <h1 class="text-5xl md:text-6xl font-serif mb-4">Dark Life Series</h1>
+      <p class="text-xl text-brand-warm/80 max-w-2xl leading-relaxed">
+        A subsea Western set on the flooded frontier of tomorrow. The last frontier is not West. It is <em>Down</em>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-container grid md:grid-cols-3 gap-10">
+    <div class="md:col-span-2">
+      <p class="section-subheading">About the Series</p>
+      <h2 class="font-serif text-3xl text-brand-dark mb-4">The World of Dark Life</h2>
+      <div class="prose prose-lg max-w-none text-brand-dark/80 space-y-4">
+        <p>
+          In a future Earth half-drowned by rising seas, humanity has been pushed to overcrowded inland cities except for a brave few who have claimed the ocean floor as the last frontier. The subsea settlers are ranchers, farmers, and pioneers. They are also hiding a secret.
+        </p>
+        <p>
+          Children born and raised underwater develop abilities that Topsiders would fear, hunt, and exploit. Fifteen-year-old Ty is one of them. When Topsider orphan Gemma arrives searching for her missing brother, she and Ty uncover a conspiracy that could destroy everything the settlers have built and expose what the ocean has made them.
+        </p>
+        <p>
+          Part frontier Western, part sci-fi thriller, with real deep-sea science woven into every page.
+        </p>
+      </div>
+
+      <div class="mt-8 p-5 bg-brand-warm border-l-4 border-brand-gold rounded-sm">
+        <h3 class="font-serif text-lg text-brand-dark mb-2">The Real Science Inside</h3>
+        <p class="text-sm text-brand-dark/70 leading-relaxed">
+          <em>Dark Life</em> is built on real ocean science: deep-sea ecosystems, bioluminescence, underwater pressure physiology, and NOAA research into subsea habitation. Great for <strong>STEM/STEAM</strong> connections in grades 5-7.
+        </p>
+        <a href="/for-educators" class="text-xs uppercase tracking-widest text-brand-accent font-semibold mt-3 inline-block hover:underline">
+          Educator Resources &amp; STEM Guides &rarr;
+        </a>
+      </div>
+    </div>
+
+    <aside>
+      <h3 class="text-xs uppercase tracking-widest text-brand-accent mb-4 font-semibold">Reading Order</h3>
+      <ol class="space-y-4">
+        {seriesBooks.map((book) => (
+          <li>
+            <a href={`/books/${book.slug}`} class="group flex gap-4 items-start p-4 bg-white rounded-sm shadow-sm hover:shadow-md transition-shadow border border-brand-dark/5">
+              <span class="text-2xl font-serif text-brand-accent/30 font-bold leading-none mt-1">{book.seriesNumber}</span>
+              <div>
+                <p class="font-serif text-brand-dark group-hover:text-brand-accent transition-colors">{book.title}</p>
+                <p class="text-xs text-brand-dark/40 mt-0.5">{book.pubDate}</p>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ol>
+
+      <div class="mt-6 p-4 bg-brand-dark text-brand-warm rounded-sm">
+        <p class="text-xs uppercase tracking-widest text-brand-gold mb-2">Awards &amp; Recognition</p>
+        <ul class="text-xs text-brand-warm/70 space-y-1">
+          <li>NYT Bestseller</li>
+          <li>2011 Friends of American Writers Award</li>
+          <li>Junior Library Guild Selection (x2)</li>
+          <li>TODAY Show Book Club Pick</li>
+          <li>Disney Film Option</li>
+          <li>10-state award nominations</li>
+        </ul>
+      </div>
+    </aside>
+  </section>
+
+  <section class="bg-brand-warm/50 py-16">
+    <div class="section-container">
+      <h2 class="section-heading mb-8">The Books</h2>
+      <div class="grid md:grid-cols-2 gap-8 max-w-2xl">
+        {seriesBooks.map((book) => (
+          <a href={`/books/${book.slug}`} class="group bg-white rounded-sm shadow-md hover:shadow-xl transition-shadow overflow-hidden">
+            <div class="aspect-[2/3] bg-brand-mid flex items-center justify-center">
+              {book.coverImage
+                ? <img src={book.coverImage} alt={`${book.title} cover`} class="w-full h-full object-cover" />
+                : (
+                  <div class="text-center p-6">
+                    <p class="text-xs uppercase tracking-widest text-brand-gold mb-2">Dark Life #{book.seriesNumber}</p>
+                    <p class="font-serif text-brand-warm text-2xl">{book.title}</p>
+                    <p class="text-xs text-brand-warm/40 mt-2">Cover coming soon</p>
+                  </div>
+                )}
+            </div>
+            <div class="p-5">
+              <h3 class="font-serif text-xl text-brand-dark mb-1 group-hover:text-brand-accent transition-colors">{book.title}</h3>
+              <p class="text-xs text-brand-dark/50 mb-3">{book.pubDate} · {book.ageRange} · {book.gradeRange}</p>
+              <p class="text-sm text-brand-dark/70 line-clamp-3">{book.shortSynopsis}</p>
+              <p class="text-xs uppercase tracking-widest text-brand-accent mt-4 font-semibold">Read More &rarr;</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

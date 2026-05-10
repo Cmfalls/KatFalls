@@ -1,0 +1,209 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import RetailerRail from '@components/RetailerRail.astro';
+import ReviewQuote from '@components/ReviewQuote.astro';
+import { books } from '../../data/books';
+import { buildBookPageSchema } from '../../data/structuredData';
+
+const book = books.find((entry) => entry.slug === 'rip-tide')!;
+const heroImage = '/images/books/RTBG1.jpg';
+
+const ripTideRetailers = [
+  {
+    name: 'Amazon',
+    href: 'https://www.amazon.com/Rip-Tide-Dark-Life-Book/dp/0545178436/ref=tmm_hrd_swatch_0?_encoding=UTF8&qid=1588002979&sr=8-1',
+    priority: true,
+  },
+  {
+    name: 'Barnes & Noble',
+    href: 'https://www.barnesandnoble.com/w/rip-tide-kat-falls/1100178213?ean=9780545389365',
+    priority: true,
+  },
+  {
+    name: 'Bookshop.org',
+    href: 'https://bookshop.org/p/books/dark-life-book-2-rip-tide-kat-falls/50e5f5826193f3b7?ean=9780545389365&next=t',
+    priority: true,
+  },
+  {
+    name: 'Audio Sample',
+    href: 'https://www.amazon.com/arya/webplayer?asin=B005F5A1TU&marketplaceId=ATVPDKIKX0DER&amazonAsin=B005FDC5ZU&useRelativeUrl=true&initialCPLaunch=true&isSample=true&isHomesteadCaller=true&isMobile=false&ref_=adbl_dp_dt_cloudplayer_anon',
+    priority: false,
+  },
+];
+
+const schema = buildBookPageSchema(book, {
+  audience: { min: 9, max: 12 },
+  breadcrumbs: [
+    { name: 'Home', path: '/' },
+    { name: 'Books', path: '/books' },
+    { name: 'Dark Life Series', path: '/series/dark-life' },
+    { name: 'Rip Tide', path: '/books/rip-tide' },
+  ],
+  genre: 'Middle Grade Sci-Fi Adventure',
+  seriesName: 'Dark Life Series',
+  seriesPath: '/series/dark-life',
+});
+---
+
+<BaseLayout
+  title="Rip Tide by Kat Falls - Dark Life Series Book 2"
+  description={book.shortSynopsis}
+  schema={schema}
+>
+  <section class="relative isolate overflow-hidden bg-brand-dark text-brand-warm">
+    <div class="absolute inset-0" aria-hidden="true">
+      <img
+        src={heroImage}
+        alt=""
+        class="h-full w-full object-cover object-center opacity-35"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/90 to-brand-dark/75"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/35 to-brand-dark/10"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-10 items-start">
+      <div class="md:col-span-1">
+        <div class="aspect-[2/3] bg-brand-mid rounded-sm shadow-2xl overflow-hidden">
+          <img
+            src={book.coverImage}
+            alt={`${book.title} cover`}
+            class="w-full h-full object-cover"
+            onerror="this.classList.add('hidden'); if (this.nextElementSibling) this.nextElementSibling.classList.remove('hidden');"
+          />
+          <div class="hidden w-full h-full flex items-center justify-center text-center p-6">
+            <div>
+              <p class="text-xs uppercase tracking-widest text-brand-gold mb-2">Dark Life #2</p>
+              <p class="font-serif text-brand-warm text-2xl">{book.title}</p>
+              <p class="text-xs text-brand-warm/30 mt-2">Cover coming soon</p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-6">
+          <RetailerRail isbn={book.isbn} title={book.title} overrides={ripTideRetailers} />
+        </div>
+      </div>
+
+      <div class="md:col-span-2">
+        <nav class="text-xs text-brand-warm/40 mb-4">
+          <a href="/books" class="hover:text-brand-warm transition-colors">Books</a>
+          <span class="mx-2">&rsaquo;</span>
+          <a href="/series/dark-life" class="hover:text-brand-warm transition-colors">Dark Life Series</a>
+          <span class="mx-2">&rsaquo;</span>
+          <span class="text-brand-warm/70">{book.title}</span>
+        </nav>
+
+        <p class="text-xs uppercase tracking-widest text-brand-gold mb-2">Dark Life Series, Book 2</p>
+        <h1 class="text-5xl font-serif mb-3">{book.title}</h1>
+        <p class="text-brand-accent font-serif text-xl italic mb-6">{book.tagline}</p>
+
+        <div class="flex flex-wrap gap-4 text-xs text-brand-warm/60 mb-8 uppercase tracking-wide">
+          <span>{book.publisher}</span>
+          <span>&middot;</span>
+          <span>{book.pubDate}</span>
+          <span>&middot;</span>
+          <span>{book.ageRange}</span>
+          <span>&middot;</span>
+          <span>{book.gradeRange}</span>
+          {book.lexile && <><span>&middot;</span><span>Lexile {book.lexile}</span></>}
+          {book.atos && <><span>&middot;</span><span>ATOS {book.atos}</span></>}
+        </div>
+
+        <p class="text-brand-warm/80 leading-relaxed text-lg mb-6">{book.shortSynopsis}</p>
+
+        <div class="flex flex-wrap gap-2 mb-8">
+          {book.awards.map((award) => (
+            <span class="text-xs bg-brand-gold/10 text-brand-gold border border-brand-gold/30 px-3 py-1 rounded-sm">{award}</span>
+          ))}
+        </div>
+
+        <div class="p-4 bg-brand-mid rounded-sm text-sm text-brand-warm/70">
+          <span class="text-brand-warm/40 text-xs uppercase tracking-widest">Read first:</span>
+          <a href="/books/dark-life" class="ml-2 text-brand-gold hover:underline">Dark Life (Book 1)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-container grid md:grid-cols-3 gap-10">
+    <div class="md:col-span-2">
+      <h2 class="font-serif text-2xl text-brand-dark mb-4">About the Book</h2>
+      <p class="text-brand-dark/80 leading-relaxed text-lg mb-6">{book.longSynopsis}</p>
+
+      <div class="grid gap-6 lg:grid-cols-2 mb-10">
+        <div class="p-5 bg-white shadow-sm rounded-sm border border-brand-dark/5">
+          <h3 class="text-xs uppercase tracking-widest text-brand-accent mb-3 font-semibold">Editorial Take</h3>
+          <p class="text-sm text-brand-dark/70 leading-relaxed">
+            The notes you shared position <em>Rip Tide</em> as a true escalation book: same underwater frontier, higher stakes, and a darker mystery built around kidnapped parents, hostile Surfs, and a subsea world becoming more unstable.
+          </p>
+          <p class="text-sm text-brand-dark/70 leading-relaxed mt-3">
+            The throughline across the review blurbs is that the sequel widens the social world of <em>Dark Life</em> while keeping the action, tension, and underwater atmosphere that made the first book work so well.
+          </p>
+        </div>
+
+        <div class="p-5 bg-white shadow-sm rounded-sm border border-brand-dark/5">
+          <h3 class="text-xs uppercase tracking-widest text-brand-accent mb-3 font-semibold">Reader Reaction</h3>
+          <p class="text-sm text-brand-dark/70 leading-relaxed">
+            Reader feedback emphasizes that <em>Rip Tide</em> feels like a worthy sequel with quick pacing, stronger layers of conflict, and characters who grow with the series. The most repeated themes are follow-through on <em>Dark Life</em>, engaging plot movement, and age-appropriate suspense.
+          </p>
+          <div class="flex flex-wrap gap-2 mt-4">
+            {['Sequel payoff', 'Fast pacing', 'Character growth', 'Underwater danger', 'Mystery layers', 'Ages 8-12'].map((tag) => (
+              <span class="text-xs bg-brand-accent/10 text-brand-accent border border-brand-accent/20 px-3 py-1 rounded-sm">{tag}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <h3 class="font-serif text-xl text-brand-dark mt-8 mb-4">What Reviewers Said</h3>
+      {book.reviews.map((review) => (
+        <ReviewQuote quote={review.quote} source={review.source} date={review.date} starred={review.starred} />
+      ))}
+    </div>
+
+    <aside class="space-y-6">
+      <div class="p-5 bg-white shadow-sm rounded-sm border border-brand-dark/5">
+        <h3 class="text-xs uppercase tracking-widest text-brand-accent mb-3 font-semibold">Book Details</h3>
+        <dl class="space-y-2 text-sm">
+          <div><dt class="text-brand-dark/40">Publisher</dt><dd class="text-brand-dark">{book.publisher}</dd></div>
+          <div><dt class="text-brand-dark/40">Published</dt><dd class="text-brand-dark">{book.pubDate}</dd></div>
+          <div><dt class="text-brand-dark/40">Print Length</dt><dd class="text-brand-dark">320 pages</dd></div>
+          <div><dt class="text-brand-dark/40">Reading Age</dt><dd class="text-brand-dark">8-12 years</dd></div>
+          <div><dt class="text-brand-dark/40">Grade Level</dt><dd class="text-brand-dark">3-7</dd></div>
+          <div><dt class="text-brand-dark/40">Language</dt><dd class="text-brand-dark">English</dd></div>
+          {book.lexile && <div><dt class="text-brand-dark/40">Lexile</dt><dd class="text-brand-dark">{book.lexile}</dd></div>}
+          {book.atos && <div><dt class="text-brand-dark/40">ATOS Level</dt><dd class="text-brand-dark">{book.atos}</dd></div>}
+          <div><dt class="text-brand-dark/40">ISBN-10</dt><dd class="text-brand-dark font-mono text-xs">0545178436</dd></div>
+          <div><dt class="text-brand-dark/40">ISBN-13</dt><dd class="text-brand-dark font-mono text-xs">9780545178433</dd></div>
+          <div><dt class="text-brand-dark/40">Series</dt><dd class="text-brand-dark">Book 2 of 2</dd></div>
+        </dl>
+        {book.contentNotes && (
+          <div class="mt-4 pt-4 border-t border-brand-dark/10">
+            <dt class="text-xs uppercase tracking-widest text-brand-accent mb-1 font-semibold">Content Notes</dt>
+            <dd class="text-xs text-brand-dark/60">{book.contentNotes}</dd>
+          </div>
+        )}
+      </div>
+
+      <div class="p-5 bg-white shadow-sm rounded-sm border border-brand-dark/5">
+        <h3 class="text-xs uppercase tracking-widest text-brand-accent mb-3 font-semibold">Why It Lands</h3>
+        <ul class="space-y-2 text-sm text-brand-dark/70">
+          <li>Builds naturally on <em>Dark Life</em> instead of resetting the world.</li>
+          <li>Pushes Ty and Gemma into deeper political and survival pressure.</li>
+          <li>Keeps the undersea atmosphere vivid while raising the danger.</li>
+          <li>Works for readers who want a sequel with more mystery and momentum.</li>
+        </ul>
+      </div>
+
+      <div class="p-5 bg-brand-dark text-brand-warm rounded-sm">
+        <h3 class="text-xs uppercase tracking-widest text-brand-gold mb-3 font-semibold">For Educators</h3>
+        <p class="text-xs text-brand-warm/70 mb-3">Discussion guide and STEM resources available free.</p>
+        <a href="/for-educators#rip-tide" class="text-xs uppercase tracking-widest text-brand-gold font-semibold hover:underline">Get Resources &rarr;</a>
+      </div>
+
+      <div class="p-5 bg-brand-warm border border-brand-dark/10 rounded-sm">
+        <p class="font-serif text-brand-dark mb-2">Start the series</p>
+        <a href="/books/dark-life" class="flex items-center gap-2 text-sm text-brand-dark hover:text-brand-accent transition-colors mb-1">
+          <span class="text-brand-dark/40">&larr;</span> Dark Life (Book 1)
+        </a>
+      </div>
+    </aside>
+  </section>
+</BaseLayout>

@@ -1,0 +1,104 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact Kat Falls - School Visits, Media & Fan Mail" description="Get in touch with Kat Falls for school visits, media inquiries, event requests, and fan mail.">
+  <section class="bg-brand-dark text-brand-warm py-24">
+    <div class="section-container">
+      <p class="section-subheading text-brand-gold">Get in Touch</p>
+      <h1 class="text-5xl md:text-6xl font-serif">Contact</h1>
+    </div>
+  </section>
+
+  <section class="section-container grid md:grid-cols-2 gap-16">
+    <div>
+      <h2 class="font-serif text-2xl text-brand-dark mb-6">Inquiries</h2>
+
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-xs uppercase tracking-widest text-brand-accent mb-2">Media &amp; Press</h3>
+          <p class="text-brand-dark/70 text-sm">
+            For interviews, review copies, and press inquiries, please contact:
+          </p>
+          <p class="text-brand-dark/40 italic text-sm mt-1">Contact info coming soon</p>
+        </div>
+
+        <div>
+          <h3 class="text-xs uppercase tracking-widest text-brand-accent mb-2">School Visits &amp; Events</h3>
+          <p class="text-brand-dark/70 text-sm">
+            Kat is available for school visits, library events, and festivals. Use the form or email directly.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-xs uppercase tracking-widest text-brand-accent mb-2">Fan Mail</h3>
+          <p class="text-brand-dark/70 text-sm">
+            Kat loves hearing from readers! Use the contact form to send a message.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-xs uppercase tracking-widest text-brand-accent mb-2">Rights &amp; Permissions</h3>
+          <p class="text-brand-dark/70 text-sm">
+            For foreign rights and permissions, please contact the publisher or Kat's literary agent.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="font-serif text-2xl text-brand-dark mb-6">Send a Message</h2>
+      <form method="POST" action="#" class="space-y-5">
+        <div>
+          <label for="name" class="block text-sm font-medium text-brand-dark mb-1">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="w-full border border-brand-dark/20 rounded-sm px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent bg-white"
+          />
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium text-brand-dark mb-1">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full border border-brand-dark/20 rounded-sm px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent bg-white"
+          />
+        </div>
+
+        <div>
+          <label for="subject" class="block text-sm font-medium text-brand-dark mb-1">Subject</label>
+          <select
+            id="subject"
+            name="subject"
+            class="w-full border border-brand-dark/20 rounded-sm px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent bg-white"
+          >
+            <option>Fan Mail</option>
+            <option>School Visit / Event</option>
+            <option>Media / Press</option>
+            <option>Rights &amp; Permissions</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="message" class="block text-sm font-medium text-brand-dark mb-1">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            required
+            class="w-full border border-brand-dark/20 rounded-sm px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent bg-white resize-y"
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary w-full text-center">Send Message</button>
+      </form>
+    </div>
+  </section>
+</BaseLayout>

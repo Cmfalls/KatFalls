@@ -1,0 +1,75 @@
+---
+const navLinks = [
+  { href: '/books',           label: 'Books'           },
+  { href: '/school-visits',   label: 'School Visits'   },
+  { href: '/for-educators',   label: 'For Educators'   },
+  { href: '/about',           label: 'About'           },
+  { href: '/reviews',         label: 'Reviews'         },
+  { href: '/news',            label: 'News'            },
+  { href: '/press',           label: 'Press'           },
+  { href: '/contact',         label: 'Contact'         },
+];
+
+const currentPath = Astro.url.pathname;
+
+// Active if exact match OR if on a child page (e.g. /books/dark-life is under /books)
+function isActive(href: string) {
+  if (href === '/') return currentPath === '/';
+  return currentPath === href || currentPath.startsWith(href + '/');
+}
+---
+
+<header class="sticky top-0 z-50 bg-brand-warm/95 backdrop-blur-sm border-b border-brand-dark/10 shadow-sm">
+  <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+
+    <!-- Wordmark -->
+    <a href="/" class="font-serif text-2xl text-brand-dark tracking-tight hover:text-brand-accent transition-colors shrink-0">
+      Kat Falls
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="hidden lg:flex items-center gap-6">
+      {navLinks.map(({ href, label }) => (
+        <li>
+          <a
+            href={href}
+            class:list={[
+              'text-xs font-sans font-semibold tracking-widest uppercase transition-colors whitespace-nowrap',
+              isActive(href)
+                ? 'text-brand-accent'
+                : 'text-brand-dark hover:text-brand-accent',
+            ]}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Mobile hamburger (CSS-only toggle) -->
+    <label class="lg:hidden cursor-pointer p-1" for="mobile-menu-toggle" aria-label="Toggle menu">
+      <svg class="w-6 h-6 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </label>
+  </nav>
+
+  <!-- Mobile menu -->
+  <input type="checkbox" id="mobile-menu-toggle" class="peer hidden" />
+  <div class="peer-checked:block hidden lg:hidden bg-brand-warm border-t border-brand-dark/10">
+    <ul class="max-w-7xl mx-auto px-6 py-5 grid grid-cols-2 gap-3">
+      {navLinks.map(({ href, label }) => (
+        <li>
+          <a href={href}
+             class:list={[
+               'block text-xs font-semibold uppercase tracking-widest py-2',
+               isActive(href) ? 'text-brand-accent' : 'text-brand-dark hover:text-brand-accent',
+             ]}>
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</header>

@@ -1,0 +1,23 @@
+---
+interface Props {
+  quote: string;
+  source: string;
+  date?: string;
+  starred?: boolean;
+}
+const { quote, source, date, starred = false } = Astro.props;
+---
+
+<blockquote class="border-l-4 border-brand-accent pl-5 py-1 my-4">
+  {starred && (
+    <span class="inline-block bg-brand-accent text-white text-xs font-bold px-2 py-0.5 rounded-sm mb-2 uppercase tracking-wide">
+      ★ Starred Review
+    </span>
+  )}
+  <p class="font-serif text-lg italic text-brand-dark leading-relaxed">
+    &ldquo;{quote}&rdquo;
+  </p>
+  <footer class="mt-2 text-xs uppercase tracking-widest text-brand-dark/50 font-semibold">
+    — {source}{date && <span class="font-normal normal-case tracking-normal ml-1 text-brand-dark/30">· {date}</span>}
+  </footer>
+</blockquote>

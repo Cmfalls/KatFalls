@@ -1,0 +1,197 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import RetailerRail from '@components/RetailerRail.astro';
+import ReviewQuote from '@components/ReviewQuote.astro';
+import { books } from '../../data/books';
+import { buildBookPageSchema } from '../../data/structuredData';
+
+const book = books.find((entry) => entry.slug === 'undaunted')!;
+const heroImage = '/images/books/UndauntedBG.png';
+
+const undauntedRetailers = [
+  {
+    name: 'Amazon Hardcover',
+    href: 'https://www.amazon.com/Undaunted-Inhuman-Kat-Falls/dp/0545371023/ref=pd_sbs_d_sccl_1_1/137-9705688-4079467?pd_rd_w=dcMly&content-id=amzn1.sym.aa738fbd-ad05-4d11-aae2-04b598db6305&pf_rd_p=aa738fbd-ad05-4d11-aae2-04b598db6305&pf_rd_r=7CQ2D19NG1DJZ1QNK6AD&pd_rd_wg=3nYxG&pd_rd_r=b5d36398-e4dd-46b9-a913-2c2da0106a4e&pd_rd_i=0545371023&psc=1',
+    priority: true,
+  },
+  {
+    name: 'Amazon Kindle',
+    href: 'https://www.amazon.com/Undaunted-Inhuman-Book-Kat-Falls-ebook/dp/B07CNJMRZJ/ref=sr_1_7?dchild=1&keywords=undaunted&qid=1588003680&sr=8-7&asin=B07CNJMRZJ&revisionId=ec4a66a6&format=3&depth=1',
+    priority: true,
+  },
+  {
+    name: 'Barnes & Noble',
+    href: 'https://www.barnesandnoble.com/w/undaunted-kat-falls/1128563710?ean=9780545633925',
+    priority: true,
+  },
+  {
+    name: 'Bookshop.org',
+    href: 'https://bookshop.org/p/books/undaunted-inhuman-book-2-kat-falls/f39e4ac2a7482614?ean=9780545633925&next=t',
+    priority: true,
+  },
+];
+
+const schema = buildBookPageSchema(book, {
+  audience: { min: 13, max: 18 },
+  breadcrumbs: [
+    { name: 'Home', path: '/' },
+    { name: 'Books', path: '/books' },
+    { name: 'Inhuman Series', path: '/series/inhuman' },
+    { name: 'Undaunted', path: '/books/undaunted' },
+  ],
+  genre: 'Young Adult Dystopian Science Fiction',
+  seriesName: 'Inhuman Series',
+  seriesPath: '/series/inhuman',
+});
+---
+
+<BaseLayout
+  title="Undaunted by Kat Falls - Inhuman Series Book 2"
+  description={book.shortSynopsis}
+  schema={schema}
+>
+  <section class="relative isolate overflow-hidden bg-brand-dark text-brand-warm">
+    <div class="absolute inset-0" aria-hidden="true">
+      <img
+        src={heroImage}
+        alt=""
+        class="h-full w-full object-cover object-center opacity-30"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/85 to-brand-dark/70"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/30 to-brand-dark/10"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-10 items-start">
+      <div class="md:col-span-1">
+        <div class="aspect-[2/3] bg-brand-mid rounded-sm shadow-2xl overflow-hidden">
+          <img
+            src={book.coverImage}
+            alt={`${book.title} cover`}
+            class="w-full h-full object-cover"
+            onerror="this.classList.add('hidden'); if (this.nextElementSibling) this.nextElementSibling.classList.remove('hidden');"
+          />
+          <div class="hidden w-full h-full flex items-center justify-center text-center p-6">
+            <div>
+              <p class="text-xs uppercase tracking-widest text-brand-gold mb-2">Inhuman #2</p>
+              <p class="font-serif text-brand-warm text-2xl">{book.title}</p>
+              <p class="text-xs text-brand-warm/30 mt-2">Cover coming soon</p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-6">
+          <RetailerRail isbn={book.isbn} title={book.title} overrides={undauntedRetailers} />
+        </div>
+      </div>
+
+      <div class="md:col-span-2">
+        <nav class="text-xs text-brand-warm/40 mb-4">
+          <a href="/books" class="hover:text-brand-warm transition-colors">Books</a>
+          <span class="mx-2">&rsaquo;</span>
+          <a href="/series/inhuman" class="hover:text-brand-warm transition-colors">Inhuman Series</a>
+          <span class="mx-2">&rsaquo;</span>
+          <span class="text-brand-warm/70">{book.title}</span>
+        </nav>
+
+        <p class="text-xs uppercase tracking-widest text-brand-gold mb-2">Inhuman Series, Book 2 - The Conclusion</p>
+        <h1 class="text-5xl font-serif mb-3">{book.title}</h1>
+        <p class="text-brand-accent font-serif text-xl italic mb-6">{book.tagline}</p>
+
+        <div class="flex flex-wrap gap-4 text-xs text-brand-warm/60 mb-8 uppercase tracking-wide">
+          <span>{book.publisher}</span>
+          <span>&middot;</span>
+          <span>{book.pubDate}</span>
+          <span>&middot;</span>
+          <span>{book.ageRange}</span>
+          <span>&middot;</span>
+          <span>{book.gradeRange}</span>
+          {book.lexile && <><span>&middot;</span><span>Lexile {book.lexile}</span></>}
+          {book.atos && <><span>&middot;</span><span>ATOS {book.atos}</span></>}
+        </div>
+
+        <p class="text-brand-warm/80 leading-relaxed text-lg mb-6">{book.shortSynopsis}</p>
+
+        <div class="p-4 bg-brand-mid rounded-sm text-sm text-brand-warm/70 mb-6">
+          <span class="text-brand-warm/40 text-xs uppercase tracking-widest">Read first:</span>
+          <a href="/books/inhuman" class="ml-2 text-brand-gold hover:underline">Inhuman (Book 1)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-container grid md:grid-cols-3 gap-10">
+    <div class="md:col-span-2">
+      <h2 class="font-serif text-2xl text-brand-dark mb-4">About the Book</h2>
+      <p class="text-brand-dark/80 leading-relaxed text-lg mb-6">{book.longSynopsis}</p>
+
+      <div class="grid gap-6 lg:grid-cols-2 mb-10">
+        <div class="p-5 bg-white shadow-sm rounded-sm border border-brand-dark/5">
+          <h3 class="text-xs uppercase tracking-widest text-brand-accent mb-3 font-semibold">Editorial Take</h3>
+          <p class="text-sm text-brand-dark/70 leading-relaxed">
+            The material you shared frames <em>Undaunted</em> as a true closing-volume payoff: more dangerous, more emotional, and squarely focused on what happens after Lane learns the truth about the Feral Zone and the people inside it.
+          </p>
+          <p class="text-sm text-brand-dark/70 leading-relaxed mt-3">
+            The strongest throughline here is finale energy: romance pressure, survival stakes, and the fear that what survived the first book may not survive the second unchanged.
+          </p>
+        </div>
+
+        <div class="p-5 bg-white shadow-sm rounded-sm border border-brand-dark/5">
+          <h3 class="text-xs uppercase tracking-widest text-brand-accent mb-3 font-semibold">Reader Reaction</h3>
+          <p class="text-sm text-brand-dark/70 leading-relaxed">
+            Reader response leans very positive on the finale: engaging, suspenseful, edge-of-your-seat, and satisfying as a conclusion. The common notes are strong momentum, payoff for fans of the first book, and an ending that lands emotionally as well as dramatically.
+          </p>
+          <div class="flex flex-wrap gap-2 mt-4">
+            {['Series conclusion', 'Suspense', 'Fast pacing', 'Romance thread', 'Finale payoff', 'Ages 12+'].map((tag) => (
+              <span class="text-xs bg-brand-accent/10 text-brand-accent border border-brand-accent/20 px-3 py-1 rounded-sm">{tag}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <h3 class="font-serif text-xl text-brand-dark mt-8 mb-4">What Reviewers Said</h3>
+      {book.reviews.map((review) => (
+        <ReviewQuote quote={review.quote} source={review.source} date={review.date} starred={review.starred} />
+      ))}
+    </div>
+
+    <aside class="space-y-6">
+      <div class="p-5 bg-white shadow-sm rounded-sm border border-brand-dark/5">
+        <h3 class="text-xs uppercase tracking-widest text-brand-accent mb-3 font-semibold">Book Details</h3>
+        <dl class="space-y-2 text-sm">
+          <div><dt class="text-brand-dark/40">Publisher</dt><dd class="text-brand-dark">{book.publisher}</dd></div>
+          <div><dt class="text-brand-dark/40">Published</dt><dd class="text-brand-dark">{book.pubDate}</dd></div>
+          <div><dt class="text-brand-dark/40">Print Length</dt><dd class="text-brand-dark">363 pages</dd></div>
+          <div><dt class="text-brand-dark/40">Reading Age</dt><dd class="text-brand-dark">12 years and up</dd></div>
+          <div><dt class="text-brand-dark/40">Grade Level</dt><dd class="text-brand-dark">7-9</dd></div>
+          <div><dt class="text-brand-dark/40">Language</dt><dd class="text-brand-dark">English</dd></div>
+          {book.lexile && <div><dt class="text-brand-dark/40">Lexile</dt><dd class="text-brand-dark">{book.lexile}</dd></div>}
+          {book.atos && <div><dt class="text-brand-dark/40">ATOS Level</dt><dd class="text-brand-dark">{book.atos}</dd></div>}
+          <div><dt class="text-brand-dark/40">ISBN-13</dt><dd class="text-brand-dark font-mono text-xs">9780545633925</dd></div>
+          <div><dt class="text-brand-dark/40">Kindle ASIN</dt><dd class="text-brand-dark font-mono text-xs">B07CNJMRZJ</dd></div>
+          <div><dt class="text-brand-dark/40">Series</dt><dd class="text-brand-dark">Book 2 of 2</dd></div>
+        </dl>
+        {book.contentNotes && (
+          <div class="mt-4 pt-4 border-t border-brand-dark/10">
+            <dt class="text-xs uppercase tracking-widest text-brand-accent mb-1 font-semibold">Content Notes</dt>
+            <dd class="text-xs text-brand-dark/60">{book.contentNotes}</dd>
+          </div>
+        )}
+      </div>
+
+      <div class="p-5 bg-white shadow-sm rounded-sm border border-brand-dark/5">
+        <h3 class="text-xs uppercase tracking-widest text-brand-accent mb-3 font-semibold">Why It Lands</h3>
+        <ul class="space-y-2 text-sm text-brand-dark/70">
+          <li>Delivers the payoff readers want from the second half of a duology.</li>
+          <li>Keeps the Feral Zone danger active while sharpening the emotional stakes.</li>
+          <li>Balances creature-driven suspense with character and relationship fallout.</li>
+          <li>Reads like a finale, not a placeholder, which matters for series trust.</li>
+        </ul>
+      </div>
+
+      <div class="p-5 bg-brand-warm border border-brand-dark/10 rounded-sm">
+        <p class="font-serif text-brand-dark mb-2">Start the series</p>
+        <a href="/books/inhuman" class="flex items-center gap-2 text-sm text-brand-dark hover:text-brand-accent transition-colors">
+          <span class="text-brand-dark/40">&larr;</span> Inhuman (Book 1)
+        </a>
+      </div>
+    </aside>
+  </section>
+</BaseLayout>
